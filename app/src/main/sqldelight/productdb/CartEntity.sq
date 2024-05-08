@@ -1,0 +1,35 @@
+CREATE TABLE CartEntity (
+cartid INTEGER NOT NULL PRIMARY KEY,
+sub_total REAL NOT NULL,
+qty INTEGER NOT NULL,
+created_at TEXT  NOT NULL,
+product_id INTEGER REFERENCES ProductEntity(productid) ON DELETE CASCADE,
+FOREIGN KEY (product_id) REFERENCES ProductEntity(productid) ON DELETE CASCADE
+);
+
+insertintocart:
+INSERT OR REPLACE INTO CartEntity VALUES (?,?,?,?,?);
+
+getAllfromcart:
+SELECT * FROM CartEntity;
+
+getitembycartid:
+SELECT * FROM CartEntity WHERE cartid=:cartid;
+
+getitembyproductid:
+SELECT * FROM CartEntity WHERE product_id=:product_id;
+
+getcartcount:
+SELECT COUNT(*) FROM CartEntity;
+
+deleteitem:
+DELETE FROM CartEntity WHERE cartid=:cart_id;
+
+getAllCartinfo:
+SELECT * FROM ProductEntity INNER JOIN CartEntity ON ProductEntity.productid=CartEntity.product_id;
+
+deleteAll:
+DELETE FROM CartEntity;
+
+
+

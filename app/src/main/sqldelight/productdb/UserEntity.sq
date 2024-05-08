@@ -1,0 +1,12 @@
+CREATE TABLE UserEntity (
+id INTEGER NOT NULL PRIMARY KEY,
+username TEXT NOT NULL,
+email TEXT NOT NULL,
+password TEXT NOT NULL
+);
+
+insertproduct:
+INSERT OR REPLACE INTO UserEntity VALUES (?,?,?,?);
+
+fetchuser:
+SELECT * FROM UserEntity WHERE username=:username AND password=:password;
